@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Laravel\ServiceProvider;
+
 return [
 
     /*
@@ -122,5 +124,22 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    'providers' => ServiceProvider::defaultProviders()->merge([
+
+        /*
+         * Application Service Providers...
+         */
+
+        App\Providers\AppServiceProvider::class,
+
+        /*
+         * Package Service Providers...
+         */
+
+        App\Providers\FortifyServiceProvider::class,
+
+        Spatie\Permission\PermissionServiceProvider::class,
+    ])->toArray(),
 
 ];
