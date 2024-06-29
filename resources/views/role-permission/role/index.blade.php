@@ -38,7 +38,9 @@
                                         <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $role->id }}</td>
                                         <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $role->name }}</td>
                                         <td class="py-3 px-6 text-left">
-                                            <a href="{{ url('roles/'.$role->id.'/edit') }}" class="text-blue-500 font-bold hover:text-blue-700">Edit</a>
+                                            <a href="{{ url('roles/'.$role->id.'/give-permission') }}" class="text-blue-500 font-bold hover:text-blue-700">Add/Edit Role Permission</a>
+                                            <span class="mx-1">|</span>
+                                            <a href="{{ url('roles/'.$role->id.'/edit') }}" class="text-blue-500 font-bold hover:text-blue-700">Edit Role</a>
                                             <span class="mx-1">|</span>
                                             <a href="{{ url('roles/'.$role->id.'/delete') }}" class="text-red-500 font-bold hover:text-red-700">Delete</a>
                                         </td>

@@ -18,20 +18,21 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')">
-                        {{ __('Permissions') }}
+                    <x-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
+                        {{ __('Roles') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
-                        {{ __('Roles') }}
+                    <x-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')">
+                        {{ __('Permissions') }}
                     </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @if(Auth::check())
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -62,6 +63,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @endif
             </div>
 
             <!-- Hamburger -->
@@ -85,6 +87,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @if(Auth::check())
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
@@ -108,5 +111,6 @@
                 </form>
             </div>
         </div>
+        @endif
     </div>
 </nav>
