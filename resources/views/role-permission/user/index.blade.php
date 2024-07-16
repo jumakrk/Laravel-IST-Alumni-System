@@ -13,9 +13,9 @@
                 <div class="bg-white shadow-md rounded-lg mt-3">
                     <div class="bg-gray-100 p-4 border-b">
                         <h4 class="text-lg font-semibold flex justify-between items-center">
-                            Permissions 
-                            <a href="{{ url('permissions/create') }}" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 text-sm rounded-3xl">
-                                Add Permission
+                            Users 
+                            <a href="{{ url('users/create') }}" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 text-sm rounded-3xl">
+                                Add User
                             </a>
                         </h4>
                     </div>
@@ -26,6 +26,8 @@
                                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                         <th class="py-3 px-6 text-left divide-x divide-gray-200">Id</th>
                                         <th class="py-3 px-6 text-left divide-x divide-gray-200">Name</th>
+                                        <th class="py-3 px-6 text-left divide-x divide-gray-200">Email</th>
+                                        <th class="py-3 px-6 text-left divide-x divide-gray-200">Role</th>
                                         <th class="py-3 px-6 text-left">Action</th>
                                     </tr>
                                 </thead>
@@ -33,14 +35,22 @@
                                 {{-- Table body --}}
                                 <tbody class="text-gray-600 text-sm font-light">
 
-                                    @foreach ($permissions as $permission)
+                                    @foreach ($users as $user)
                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                        <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $permission->id }}</td>
-                                        <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $permission->name }}</td>
+                                        <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $user->id }}</td>
+                                        <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $user->name }}</td>
+                                        <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $user->email }}</td>
+                                        <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">
+                                            @if (!empty($user->getRoleNames()))
+                                                @foreach ($user->getRoleNames() as $rolename)
+                                                <label class="px-2 py-1 bg-blue-500 text-white rounded-md mx-1">{{ $rolename }}</label>
+                                                @endforeach
+                                            @endif
+                                        </td>
                                         <td class="py-3 px-6 text-left">
-                                            <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="text-blue-500 font-bold hover:text-blue-700">Edit Permission</a>
+                                            <a href="{{ url('users/'.$user->id.'/edit') }}" class="text-blue-500 font-bold hover:text-blue-700">Edit User</a>
                                             <span class="mx-1">|</span>
-                                            <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="text-red-500 font-bold hover:text-red-700">Delete</a>
+                                            <a href="{{ url('users/'.$user->id.'/delete') }}" class="text-red-500 font-bold hover:text-red-700">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
