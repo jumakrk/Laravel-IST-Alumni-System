@@ -51,8 +51,6 @@ class RegisteredUserController extends Controller
                 'confirmed',
                 'min:8',
                 'confirmed',
-                'regex:/[a-z]/',
-                'regex:/[A-Z]/',
                 'regex:/[0-9]/',
                 'regex:/[@$!%*#?&]/',
             ],

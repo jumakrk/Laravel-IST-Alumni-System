@@ -45,8 +45,6 @@ class UserController extends Controller
                 'required',
                 'confirmed',
                 'min:8',
-                'regex:/[a-z]/',
-                'regex:/[A-Z]/',
                 'regex:/[0-9]/',
                 'regex:/[@$!%*#?&]/',
             ],
