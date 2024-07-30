@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         Mail::to($this->email)->send(new CustomEmailVerification($this));
     }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

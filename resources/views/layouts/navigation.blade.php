@@ -34,6 +34,12 @@
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
+                        {{ __('Jobs') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -48,7 +54,7 @@
                                 <lord-icon
                                     src="https://cdn.lordicon.com/kthelypq.json"
                                     trigger="hover"
-                                    style="width:20px;height:20px">
+                                    style="width:30px;height:30px">
                                 </lord-icon>
 
                             <div class="ms-1">
