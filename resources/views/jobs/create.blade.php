@@ -25,7 +25,7 @@
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <label for="type" class="text-sm font-medium text-gray-500">Type</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <select name="type" id="type" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 sm:text-sm" required>
+                            <select name="type" id="type" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                                 <option value="" disabled selected>Select job type</option>
                                 <option value="Cyber Security" {{ old('type') == 'Cyber Security' ? 'selected' : '' }}>Cyber Security</option>
                                 <option value="Software Development" {{ old('type') == 'Software Development' ? 'selected' : '' }}>Software Development</option>

@@ -62,7 +62,6 @@ class UserController extends Controller
             'major' => [
                 'string',
                 'required',
-                'in:Software Development,Cyber Security' // Match the case of the options
             ]
         ]);
 
@@ -119,7 +118,6 @@ class UserController extends Controller
             'major' => [
                 'string',
                 'required',
-                'in:Software Development,Cyber Security' // Match the case of the options
             ]
         ]);
 

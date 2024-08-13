@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class JobPostedNotification extends Notification
 {
@@ -24,11 +24,9 @@ class JobPostedNotification extends Notification
 
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->subject('New Job Matching Your Major')
-            ->line('A job matching your major has been posted. Would you like to view it?')
-            ->action('View Job', url(route('jobs.show', $this->job->id)))
-            ->line('Thank you for using our application!');
+        return (new MailMessage)->view(
+            'emails.job_posted', ['job' => $this->job, 'user' => $notifiable]
+        );
     }
 
     public function toArray($notifiable)

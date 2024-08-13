@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto px-36 py-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-center">
             <div class="w-full">
                 <div class="bg-white shadow-md rounded-lg">
@@ -17,7 +17,7 @@
                             {{-- Input field --}}
                             <div class="mb-4">
                                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Role Name:</label>
-                                <input type="text" name="name" value="{{ $role->name }}" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter permission name">
+                                <input type="text" name="name" value="{{ $role->name }}" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter role name">
                             </div>
                             {{-- Button --}}
                             <div class="flex items-center justify-between">

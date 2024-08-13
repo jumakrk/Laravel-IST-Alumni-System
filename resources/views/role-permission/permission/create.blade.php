@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="container mx-auto px-36 py-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-center">
-            <div class="w-full">
+            <div class="w-full lg:w-auto">
                 <div class="bg-white shadow-md rounded-lg">
                     {{-- Top part of form --}}
                     <div class="bg-gray-100 p-4 border-b">

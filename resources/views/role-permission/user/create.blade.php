@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto px-36 py-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-center">
             <div class="w-full">
                 <div class="bg-white shadow-md rounded-lg">
@@ -25,7 +25,7 @@
 
                         <form action="{{ url('users') }}" method="POST">
                             @csrf
-                            {{-- Input field --}}
+                            {{-- Input fields --}}
                             <div class="mb-4">
                                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
                                 <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter name">
@@ -42,12 +42,13 @@
                                 <label for="password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password:</label>
                                 <input type="password" name="password_confirmation" id="password_confirmation" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Confirm password">
                             </div>
+                            {{-- Major Field (Dropdown) --}}
                             <div class="mb-4">
                                 <label for="major" class="block text-gray-700 text-sm font-bold mb-2">Major:</label>
-                                <select name="major" id="major" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                    <option value="" disabled>Select Major</option>
-                                    <option value="software_development">Software Development</option>
-                                    <option value="cyber_security">Cyber Security</option>
+                                <select name="major" id="major" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                    <option value="" disabled selected>Select User's Major</option>
+                                    <option value="Cyber Security" {{ old('major') == 'Cyber Security' ? 'selected' : '' }}>Cyber Security</option>
+                                    <option value="Software Development" {{ old('major') == 'Software Development' ? 'selected' : '' }}>Software Development</option>
                                 </select>
                             </div>
                             <div class="mb-4">

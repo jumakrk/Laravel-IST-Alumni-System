@@ -45,21 +45,6 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @if(Auth::check())
-                <!-- Notification Bell -->
-                <div class="relative">
-                    <a href="{{ route('notifications.index') }}" class="text-gray-600 hover:text-gray-800">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a7.003 7.003 0 00-5-6.708V4a1 1 0 10-2 0v.292C8.67 5.067 7 7.237 7 10v4.159c0 .538-.214 1.054-.595 1.437L5 17h5m0 0v1a3 3 0 006 0v-1m-6 0h6"></path>
-                        </svg>
-                        @php
-                            $unreadNotifications = Auth::user()->unreadNotifications->count();
-                        @endphp
-                        @if($unreadNotifications > 0)
-                        <span class="absolute top-0 right-0 mr-1 mt-1 inline-block w-3 h-3 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full text-white text-xs font-bold flex items-center justify-center">{{ $unreadNotifications }}</span>
-                        @endif
-                    </a>
-                </div>
-
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -101,23 +86,6 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <!-- Notification Bell in Mobile View -->
-                @if(Auth::check())
-                <div class="relative me-2">
-                    <a href="{{ route('notifications.index') }}" class="text-gray-600 hover:text-gray-800">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a7.003 7.003 0 00-5-6.708V4a1 1 0 10-2 0v.292C8.67 5.067 7 7.237 7 10v4.159c0 .538-.214 1.054-.595 1.437L5 17h5m0 0v1a3 3 0 006 0v-1m-6 0h6"></path>
-                        </svg>
-                        @php
-                            $unreadNotifications = Auth::user()->unreadNotifications->count();
-                        @endphp
-                        @if($unreadNotifications > 0)
-                        <span class="absolute top-0 right-0 mr-1 mt-1 inline-block w-3 h-3 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full text-white text-xs font-bold flex items-center justify-center">{{ $unreadNotifications }}</span>
-                        @endif
-                    </a>
-                </div>
-                @endif
-
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />

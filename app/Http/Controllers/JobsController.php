@@ -32,7 +32,7 @@ class JobsController extends Controller
             'application_deadline' => 'required|date',
             'posted_at' => 'required|date',
         ]);
-
+    
         $job = Job::create([
             'title' => $request->title,
             'location' => $request->location,
@@ -43,13 +43,13 @@ class JobsController extends Controller
             'posted_at' => $request->posted_at,
             'user_id' => auth()->id(),
         ]);
-
+    
         // Notify users based on their major
         $users = User::where('major', $job->type)->get();
         foreach ($users as $user) {
             $user->notify(new JobPostedNotification($job));
         }
-
+    
         return redirect()->route('jobs.index')->with('status', 'Job posted successfully.');
     }
 
@@ -58,9 +58,12 @@ class JobsController extends Controller
         return view('jobs.show', compact('job'));
     }
 
-    public function edit(Job $job)
+    public function edit($id)
     {
-        return view('jobs.edit', compact('job'));
+        $job = Job::findOrFail($id);
+        $majors = ['Software Development', 'Cyber Security'];
+        return view('jobs.edit', compact('job', 'majors'));
+
     }
 
     public function update(Request $request, Job $job)

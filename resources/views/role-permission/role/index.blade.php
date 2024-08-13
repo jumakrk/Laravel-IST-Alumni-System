@@ -1,9 +1,8 @@
 <x-app-layout>
-
-    <div class="container mx-auto px-36 py-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-center">
             <div class="w-full">
-
+                
                 @if (session('status'))
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative" role="alert">
                         <span class="block sm:inline">{{ session('status') }}</span>
@@ -32,7 +31,6 @@
 
                                 {{-- Table body --}}
                                 <tbody class="text-gray-600 text-sm font-light">
-
                                     @foreach ($roles as $role)
                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                                         <td class="py-3 px-6 text-left divide-x divide-gray-200 font-medium">{{ $role->id }}</td>
@@ -46,9 +44,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-
                                 </tbody>
-
                             </table>
                         </div>
                     </div>

@@ -32,17 +32,6 @@ Route::resource('jobs', App\Http\Controllers\JobsController::class)->names([
     'destroy' => 'jobs.destroy',
 ]);
 
-// To be removed
-Route::get('/test-mail', function () {
-    Mail::raw('This is a test email', function ($message) {
-        $message->to('your-email@gmail.com')  // Replace with your email address
-                ->subject('Test Email');
-    });
-
-    return 'Mail sent successfully!';
-});
-// To be removed
-
 // Show the job application form
 Route::get('jobs/{job}/apply', [App\Http\Controllers\JobApplicationController::class, 'create'])->name('jobs.apply');
 
