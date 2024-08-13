@@ -18,8 +18,10 @@ class UserController extends Controller
 
     public function create(){
         $roles = Role::pluck('name', "name")->all();
+        $majors = ['Software Development', 'Cyber Security']; // Updated majors array
         return view('role-permission.user.create', [
-            'roles' => $roles
+            'roles' => $roles,
+            'majors' => $majors // Pass majors to the view
         ]);
     }
 
@@ -55,13 +57,20 @@ class UserController extends Controller
             ],
             'roles.*' => [
                 'string'
+            ],
+
+            'major' => [
+                'string',
+                'required',
+                'in:Software Development,Cyber Security' // Match the case of the options
             ]
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'major' => $request->major,
         ]);
 
         $user->syncRoles($request->roles);
@@ -72,10 +81,12 @@ class UserController extends Controller
     public function edit(User $user){
         $roles = Role::pluck('name', "name")->all();
         $userRoles = $user->roles->pluck('name')->all();
+        $majors = ['Software Development', 'Cyber Security']; // Updated majors array
         return view('role-permission.user.edit', [
             'user' => $user,
             'roles' => $roles,
-            'userRoles' => $userRoles
+            'userRoles' => $userRoles,
+            'majors' => $majors // Pass majors to the view
         ]);
     }
 
@@ -103,12 +114,19 @@ class UserController extends Controller
             ],
             'roles.*' => [
                 'string'
+            ],
+
+            'major' => [
+                'string',
+                'required',
+                'in:Software Development,Cyber Security' // Match the case of the options
             ]
         ]);
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
+            'major' => $request->major,
         ];
 
         if (!empty($request->password)) {

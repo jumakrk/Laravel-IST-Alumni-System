@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'major',
     ];
 
     /**
@@ -56,5 +57,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function jobs()
     {
         return $this->hasMany(Job::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 }

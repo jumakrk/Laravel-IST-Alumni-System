@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\JobPostedNotification;
 
 class JobsController extends Controller
 {
+
     public function index()
     {
         $jobs = Job::with('user')->get(); // Fetch jobs with user information
@@ -29,8 +32,8 @@ class JobsController extends Controller
             'application_deadline' => 'required|date',
             'posted_at' => 'required|date',
         ]);
-    
-        Job::create([
+
+        $job = Job::create([
             'title' => $request->title,
             'location' => $request->location,
             'type' => $request->type,
@@ -38,11 +41,17 @@ class JobsController extends Controller
             'qualifications' => $request->qualifications,
             'application_deadline' => $request->application_deadline,
             'posted_at' => $request->posted_at,
-            'user_id' => auth()->id(), // Automatically set the user ID
+            'user_id' => auth()->id(),
         ]);
-    
-        return redirect()->route('jobs.index')->with('status', 'Job created successfully.');
-    }    
+
+        // Notify users based on their major
+        $users = User::where('major', $job->type)->get();
+        foreach ($users as $user) {
+            $user->notify(new JobPostedNotification($job));
+        }
+
+        return redirect()->route('jobs.index')->with('status', 'Job posted successfully.');
+    }
 
     public function show(Job $job)
     {

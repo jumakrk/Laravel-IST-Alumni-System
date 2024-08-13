@@ -27,8 +27,21 @@
                         <label for="type" class="text-sm font-medium text-gray-500">Type</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
                             <select name="type" id="type" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 sm:text-sm" required>
+                                <option value="" disabled>Select job type</option>
                                 <option value="Cyber Security" {{ old('type', $job->type) == 'Cyber Security' ? 'selected' : '' }}>Cyber Security</option>
                                 <option value="Software Development" {{ old('type', $job->type) == 'Software Development' ? 'selected' : '' }}>Software Development</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Major Field (Dropdown) -->
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <label for="major" class="text-sm font-medium text-gray-500">Major</label>
+                        <div class="mt-1 sm:col-span-2 sm:mt-0">
+                            <select name="major" id="major" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 sm:text-sm" required>
+                                <option value="" disabled>Select major</option>
+                                @foreach ($majors as $major)
+                                    <option value="{{ $major }}" {{ old('major', $job->major) == $major ? 'selected' : '' }}>{{ $major }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -63,11 +76,11 @@
                 </div>
                 <div class="px-4 py-3 text-right sm:px-6 flex justify-between">
                     <!-- Back Button -->
-                    <a href="{{ route('jobs.show', $job->id) }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <a href="{{ route('jobs.show', $job->id) }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-3xl text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Back
                     </a>
                     <!-- Update Job Button -->
-                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-3xl text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Update Job
                     </button>
                 </div>

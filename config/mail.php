@@ -113,4 +113,6 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Hello'),
     ],
 
+    'log_channel' => env('MAIL_LOG_CHANNEL', 'stack'),
+
 ];

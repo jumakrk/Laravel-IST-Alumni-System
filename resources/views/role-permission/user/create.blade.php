@@ -43,6 +43,14 @@
                                 <input type="password" name="password_confirmation" id="password_confirmation" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Confirm password">
                             </div>
                             <div class="mb-4">
+                                <label for="major" class="block text-gray-700 text-sm font-bold mb-2">Major:</label>
+                                <select name="major" id="major" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="" disabled>Select Major</option>
+                                    <option value="software_development">Software Development</option>
+                                    <option value="cyber_security">Cyber Security</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
                                 <label for="roles" class="block text-gray-700 text-sm font-bold mb-2">Roles:</label>
                                 <select name="roles[]" id="roles" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" multiple>
                                     <option value="">Select Role</option>

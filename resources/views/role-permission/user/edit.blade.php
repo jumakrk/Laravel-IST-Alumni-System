@@ -56,6 +56,16 @@
                                 @endforeach
                                 @error('roles')<span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
+                            <div class="mb-4">
+                                <label for="major" class="block text-gray-700 text-sm font-bold mb-2">Major:</label>
+                                <select name="major" id="major" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="">Select Major</option>
+                                    @foreach ($majors as $major)
+                                        <option value="{{ $major }}" {{ $user->major == $major ? 'selected' : '' }}>{{ $major }}</option>
+                                    @endforeach
+                                </select>
+                                @error('major')<span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
                             {{-- Button --}}
                             <div class="flex items-center justify-between">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 text-sm rounded-3xl focus:outline-none focus:shadow-outline">

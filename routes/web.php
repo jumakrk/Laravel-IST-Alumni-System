@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Mail;
 
 // Route::group(['middleware' => ['role:super-admin|admin']], function() {
 
@@ -31,11 +32,38 @@ Route::resource('jobs', App\Http\Controllers\JobsController::class)->names([
     'destroy' => 'jobs.destroy',
 ]);
 
+// To be removed
+Route::get('/test-mail', function () {
+    Mail::raw('This is a test email', function ($message) {
+        $message->to('your-email@gmail.com')  // Replace with your email address
+                ->subject('Test Email');
+    });
+
+    return 'Mail sent successfully!';
+});
+// To be removed
+
 // Show the job application form
 Route::get('jobs/{job}/apply', [App\Http\Controllers\JobApplicationController::class, 'create'])->name('jobs.apply');
 
 // Handle the application submission
 Route::post('jobs/{job}/apply', [App\Http\Controllers\JobApplicationController::class, 'store'])->name('applications.store');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+    Route::put('/notifications/{id}/read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/mark-all-as-read', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::delete('/notifications/{id}', [App\Http\Controllers\NotificationController::class, 'destroy'])->name('notifications.destroy');
+
+    Route::get('/jobs', [App\Http\Controllers\JobsController::class, 'index'])->name('jobs.index');
+    Route::get('/jobs/create', [App\Http\Controllers\JobsController::class, 'create'])->name('jobs.create');
+    Route::post('/jobs', [App\Http\Controllers\JobsController::class, 'store'])->name('jobs.store');
+    Route::get('/jobs/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('jobs.show');
+    Route::get('/jobs/{job}/edit', [App\Http\Controllers\JobsController::class, 'edit'])->name('jobs.edit');
+    Route::put('/jobs/{job}', [App\Http\Controllers\JobsController::class, 'update'])->name('jobs.update');
+    Route::delete('/jobs/{job}', [App\Http\Controllers\JobsController::class, 'destroy'])->name('jobs.destroy');
+});
+
 
 
 Route::get('/', function () {
