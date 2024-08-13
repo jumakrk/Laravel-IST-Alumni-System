@@ -1,5 +1,20 @@
 <x-app-layout>
-    <div class="max-w-6xl mx-auto py-6 sm:px-6 lg:px-8"> <!-- Adjusted max-w to make it wider -->
+    <div class="max-w-6xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Display Flash Messages -->
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative flash-message" id="flash-message">
+                {{ session('success') }}
+            </div>
+        @elseif (session('error'))
+            <div class="bg-red-100 border border-red-400 text-green-700 px-4 py-3 rounded-xl relative flash-message" id="flash-message">
+                {{ session('error') }}
+            </div>
+        @elseif (session('info'))
+            <div class="mb-4 p-4 text-white bg-blue-500 rounded-md flash-message" id="flash-message">
+                {{ session('info') }}
+            </div>
+        @endif
+
         <div class="bg-white overflow-hidden shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6 flex justify-between">
                 <h3 class="text-lg font-medium leading-6 text-gray-900">Job Details</h3>
@@ -77,4 +92,26 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript to Hide Flash Messages -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the flash message element
+            var flashMessage = document.getElementById('flash-message');
+
+            // Check if the flash message exists
+            if (flashMessage) {
+                // Set a timeout to hide the flash message after 3 seconds
+                setTimeout(function() {
+                    flashMessage.style.opacity = '0';
+                    flashMessage.style.transition = 'opacity 0.5s ease-out';
+                    
+                    // Optionally remove the element from the DOM after fade-out
+                    setTimeout(function() {
+                        flashMessage.remove();
+                    }, 500); // Matches the duration of the fade-out transition
+                }, 3000); // Time before fade-out begins
+            }
+        });
+    </script>
 </x-app-layout>

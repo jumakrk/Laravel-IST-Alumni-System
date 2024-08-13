@@ -32,6 +32,17 @@ Route::resource('jobs', App\Http\Controllers\JobsController::class)->names([
     'destroy' => 'jobs.destroy',
 ]);
 
+// To be removed
+Route::get('/test-mail', function () {
+    Mail::raw('This is a test email', function ($message) {
+        $message->to('your-email@gmail.com')  // Replace with your email address
+                ->subject('Test Email');
+    });
+
+    return 'Mail sent successfully!';
+});
+// To be removed
+
 // Show the job application form
 Route::get('jobs/{job}/apply', [App\Http\Controllers\JobApplicationController::class, 'create'])->name('jobs.apply');
 
@@ -39,10 +50,6 @@ Route::get('jobs/{job}/apply', [App\Http\Controllers\JobApplicationController::c
 Route::post('jobs/{job}/apply', [App\Http\Controllers\JobApplicationController::class, 'store'])->name('applications.store');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
-    Route::put('/notifications/{id}/read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
-    Route::post('/notifications/mark-all-as-read', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
-    Route::delete('/notifications/{id}', [App\Http\Controllers\NotificationController::class, 'destroy'])->name('notifications.destroy');
 
     Route::get('/jobs', [App\Http\Controllers\JobsController::class, 'index'])->name('jobs.index');
     Route::get('/jobs/create', [App\Http\Controllers\JobsController::class, 'create'])->name('jobs.create');

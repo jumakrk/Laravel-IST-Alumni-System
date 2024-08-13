@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container max-w-6xl mx-auto p-6">
         @if (session('status'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative" role="alert">
+            <div id="flash-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative" role="alert">
                 <span class="block sm:inline">{{ session('status') }}</span>
             </div>
         @endif
@@ -29,4 +29,17 @@
             @endforeach
         </div>
     </div>
+
+    <!-- JavaScript for auto-hiding the flash message -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                setTimeout(() => {
+                    flashMessage.style.opacity = 0;
+                    setTimeout(() => flashMessage.remove(), 300); // Remove after fade-out
+                }, 3000); // Wait 3 seconds before starting fade-out
+            }
+        });
+    </script>
 </x-app-layout>
