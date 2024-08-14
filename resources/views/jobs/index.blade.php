@@ -7,7 +7,7 @@
         @endif
         <div class="flex justify-between mb-6">
             <h1 class="text-2xl font-bold">Jobs</h1>
-            @role('super admin|admin')
+            @role('super-admin|admin')
                 <a href="{{ route('jobs.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-3xl hover:bg-blue-600">Create Job</a>
             @endrole
         </div>
@@ -21,7 +21,7 @@
                     <p class="text-gray-500 font-semibold mb-4">Posted by: {{ $job->user->name }}</p>
                     <div class="flex justify-between items-center">
                         <a href="{{ route('jobs.show', $job->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded-3xl hover:bg-blue-600 transition-colors duration-300">View Details</a>
-                        @role('super admin|admin')
+                        @role('super-admin|admin')
                             <form action="{{ route('jobs.destroy', $job->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this job?');">
                                 @csrf
                                 @method('DELETE')

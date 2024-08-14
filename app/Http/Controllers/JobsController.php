@@ -60,7 +60,6 @@ class JobsController extends Controller
 
     public function edit(Job $job)
     {
-        $job = Job::findOrFail($id);
         $majors = ['Software Development', 'Cyber Security'];
         return view('jobs.edit', compact('job', 'majors'));
 

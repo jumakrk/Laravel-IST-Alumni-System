@@ -18,7 +18,7 @@
         <div class="bg-white overflow-hidden shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6 flex justify-between">
                 <h3 class="text-lg font-medium leading-6 text-gray-900">Job Details</h3>
-                @role('super admin|admin')
+                @role('super-admin|admin')
                 <a href="{{ route('jobs.edit', $job->id) }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Edit Job
                 </a>
