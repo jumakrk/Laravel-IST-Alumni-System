@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
 
-                @role('super admin|admin')
+                @role('super admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
                         {{ __('Roles') }}
@@ -29,7 +29,9 @@
                         {{ __('Permissions') }}
                     </x-nav-link>
                 </div>
+                @endrole
 
+                @role('super admin|admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('Users') }}
@@ -105,7 +107,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            @role('super admin|admin')
+            @role('super admin')
             <x-responsive-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
                 {{ __('Roles') }}
             </x-responsive-nav-link>
@@ -113,7 +115,9 @@
             <x-responsive-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')">
                 {{ __('Permissions') }}
             </x-responsive-nav-link>
+            @endrole
 
+            @role('super admin|admin')
             <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
