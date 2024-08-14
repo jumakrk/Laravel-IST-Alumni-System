@@ -17,6 +17,7 @@
                     </x-nav-link>
                 </div>
 
+                @role('super admin|admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
                         {{ __('Roles') }}
@@ -34,6 +35,7 @@
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
+                @endrole
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
@@ -103,6 +105,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            @role('super admin|admin')
             <x-responsive-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
                 {{ __('Roles') }}
             </x-responsive-nav-link>
@@ -114,6 +117,7 @@
             <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
+            @endrole
 
             <x-responsive-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
                 {{ __('Jobs') }}
